@@ -157,7 +157,7 @@ void example_04_HtoWWto4l(const string& output_name = "output_04.root"){
   ContraBoostJigsaw_R.AddInvisibleFrames((Wa_R.GetListInvisibleFrames()), 0);
   ContraBoostJigsaw_R.AddInvisibleFrames((Wb_R.GetListInvisibleFrames()), 1);
 
-  g_Log << LogInfo << "Initializing tree for analysis" << m_End;
+  g_Log << LogInfo << "Initializing tree for analysis" << m_RF_End;
   // check reconstruction trees
   if(LAB_R.InitializeAnalysis()){
     g_Log << LogInfo;

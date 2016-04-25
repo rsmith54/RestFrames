@@ -127,7 +127,7 @@ namespace RestFrames {
     for(int i = 0; i < Nchild; i++)
       if(!GetChildFrame(i)){
 	m_Log << LogWarning << "Empty child frame:";
-	m_Log << Log(GetChildFrame(i)) << m_End;
+	m_Log << Log(GetChildFrame(i)) << m_RF_End;
 	return SetBody(false);
       }
     return SetBody(true);
@@ -140,7 +140,7 @@ namespace RestFrames {
       if(!GetChildFrame(i).InitializeTreeRecursive()){
 	m_Log << LogWarning;
 	m_Log << "Problem with recursive tree structure from frame: ";
-	m_Log << Log(GetChildFrame(i)) << m_End;
+	m_Log << Log(GetChildFrame(i)) << m_RF_End;
 	return SetBody(false);
       }
     }
@@ -182,16 +182,16 @@ namespace RestFrames {
   void RestFrame::AddChildFrame(RestFrame& frame){
     SetBody(false);
     if(!frame){
-      m_Log << LogWarning << "Cannot add empty frame as child." << m_End;
+      m_Log << LogWarning << "Cannot add empty frame as child." << m_RF_End;
       return;
     }
     if(frame.IsLabFrame()){
-      m_Log << LogWarning << "Cannot add LabFrame frame as child: " << Log(frame) << m_End;
+      m_Log << LogWarning << "Cannot add LabFrame frame as child: " << Log(frame) << m_RF_End;
       return;
     }
     if(!m_ChildFrames.Add(frame)){
       m_Log << LogWarning << "Unable to add child frame:";
-      m_Log << Log(frame) << m_End;
+      m_Log << Log(frame) << m_RF_End;
       return;
     }
     frame.SetParentFrame(*this);
@@ -213,7 +213,7 @@ namespace RestFrames {
     if(i >= Nchild || i < 0){
       m_Log << LogWarning;
       m_Log << "Cannot GetChildFrame(" << i << "). ";
-      m_Log << "No " << i << "th child" << m_End;
+      m_Log << "No " << i << "th child" << m_RF_End;
     }
     return m_ChildFrames[i];
   }
@@ -236,7 +236,7 @@ namespace RestFrames {
     if(!GetParentFrame()){
       m_Log << LogWarning;
       m_Log << "Unable to find LabFrame above this frame. ";
-      m_Log << "No parent frame set" << m_End;
+      m_Log << "No parent frame set" << m_RF_End;
       return RestFrame::Empty();
     } 
     return m_ParentFramePtr->GetLabFrame();
@@ -278,7 +278,7 @@ namespace RestFrames {
       m_Log << LogWarning;
       m_Log << "Unable to set child's boost vector. ";
       m_Log << "Frame is not among childrend:";
-      m_Log << Log(frame) << m_End;
+      m_Log << Log(frame) << m_RF_End;
       return;
     }
     m_ChildBoosts[&frame] = boost;
@@ -290,7 +290,7 @@ namespace RestFrames {
       m_Log << LogWarning;
       m_Log << "Unable to set parent boost vector. ";
       m_Log << "No parent frame set.";
-      m_Log << m_End;
+      m_Log << m_RF_End;
       return;
     }
     m_ParentBoost = boost;
@@ -301,7 +301,7 @@ namespace RestFrames {
       m_Log << LogWarning;
       m_Log << "Unable to get child's boost vector. ";
       m_Log << "Frame is not among children:";
-      m_Log << Log(frame) << m_End;
+      m_Log << Log(frame) << m_RF_End;
       return TVector3(0.,0.,0.);
     }
     return m_ChildBoosts[&frame];
@@ -339,7 +339,7 @@ namespace RestFrames {
       if(keys[i] == GetKey()){
 	m_Log << LogWarning;
 	m_Log << "This RestFrame appears more than once in the tree:";
-	m_Log << Log(*this) << m_End;
+	m_Log << Log(*this) << m_RF_End;
 	return true;
       }
     }
@@ -419,7 +419,7 @@ namespace RestFrames {
     if(!GetProductionFrame()){
       m_Log << LogWarning;
       m_Log << "Unable to get four vector. ";
-      m_Log << "Production frame is not defined." << m_End;
+      m_Log << "Production frame is not defined." << m_RF_End;
       return TLorentzVector(0.,0.,0.,0.);
     }
 
@@ -434,7 +434,7 @@ namespace RestFrames {
       m_Log << LogWarning;
       m_Log << "Unable to get four vector. ";
       m_Log << "Cannot find a path to frame " << frame.GetName();
-      m_Log << " from frame " << GetProductionFrame().GetName() << m_End;
+      m_Log << " from frame " << GetProductionFrame().GetName() << m_RF_End;
       return TLorentzVector(0.,0.,0.,0.);
     }
   
@@ -568,7 +568,7 @@ namespace RestFrames {
 	m_Log << LogWarning;
 	m_Log << "Unable to get four vector. ";
 	m_Log << "Cannot find a path to frame " << GetName();
-	m_Log << " from frame " << GetLabFrame().GetName() << m_End;
+	m_Log << " from frame " << GetLabFrame().GetName() << m_RF_End;
 	return TLorentzVector(0.,0.,0.,0.);
       }
     } else {
@@ -577,7 +577,7 @@ namespace RestFrames {
 	m_Log << LogWarning;
 	m_Log << "Unable to get four vector. ";
 	m_Log << "Cannot find a path to frame " << GetName();
-	m_Log << " from frame " << GetLabFrame().GetName() << m_End;
+	m_Log << " from frame " << GetLabFrame().GetName() << m_RF_End;
 	return TLorentzVector(0.,0.,0.,0.);
        }
     }
@@ -610,7 +610,7 @@ namespace RestFrames {
 	m_Log << LogWarning;
 	m_Log << "Unable to get four vector. ";
 	m_Log << "Cannot find a path to frame " << axis_frame.GetName();
-	m_Log << " from frame " << GetLabFrame().GetName() << m_End;
+	m_Log << " from frame " << GetLabFrame().GetName() << m_RF_End;
 	return 0.;
       }
       int Nboost = boosts.size();

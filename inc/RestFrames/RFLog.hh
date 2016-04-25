@@ -132,7 +132,7 @@ namespace RestFrames {
   const RFList<RFBase>* Log(const RFList<T>* ptr){ return (const RFList<RFBase>*)ptr; }
 
 #ifndef __MAKECINT__
-  #define m_End RFLog::EndMessage  
+  #define m_RF_End RFLog::EndMessage  
   #define g_End RFLog::EndMessage
 #endif
 

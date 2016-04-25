@@ -158,7 +158,7 @@ void example_05_DiToptoblnu(string output_name = "output_05.root"){
   HemiJigsaw_R.AddFrames((Ta_R.GetListVisibleFrames()),0);
   HemiJigsaw_R.AddFrames((Tb_R.GetListVisibleFrames()),1);
 
-  g_Log << LogInfo << "Initializing tree for analysis" << m_End;
+  g_Log << LogInfo << "Initializing tree for analysis" << m_RF_End;
   // check reconstruction trees
   if(LAB_R.InitializeAnalysis()){
     g_Log << LogInfo;

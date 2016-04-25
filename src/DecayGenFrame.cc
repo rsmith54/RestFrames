@@ -86,7 +86,7 @@ namespace RestFrames {
     if(val < 0.){
       m_Log << LogWarning;
       m_Log << "Unable to set mass to negative value ";
-      m_Log << val << ". Setting to zero." << m_End;
+      m_Log << val << ". Setting to zero." << m_RF_End;
       m_Mass = 0.;
     } else {
       m_Mass = val;
@@ -100,7 +100,7 @@ namespace RestFrames {
     if(val < 0.){
       m_Log << LogWarning;
       m_Log << "Unable to set child momentum to negative value ";
-      m_Log << val << ". Setting to zero." << m_End;
+      m_Log << val << ". Setting to zero." << m_RF_End;
       m_ChildP = 0.;
     } else {
       m_ChildP = val;
@@ -114,7 +114,7 @@ namespace RestFrames {
     if(val < 0.){
       m_Log << LogWarning;
       m_Log << "Unable to set child gamma less than one: ";
-      m_Log << val << ". Setting to one." << m_End;
+      m_Log << val << ". Setting to one." << m_RF_End;
       m_ChildGamma = 1.;
     } else {
       m_ChildGamma = val;
@@ -129,7 +129,7 @@ namespace RestFrames {
     if(val < 0.){
       m_Log << LogWarning;
       m_Log << "CosDecay angle must be in [-1, 1]: ";
-      m_Log << val << ". Setting to random." << m_End;
+      m_Log << val << ". Setting to random." << m_RF_End;
       m_CosDecayAngle = -2.;
     } else {
       m_CosDecayAngle = val;
@@ -223,7 +223,7 @@ namespace RestFrames {
     m_Log << LogVerbose;
     m_Log << "Burning in Markov Chain MC with ";
     m_Log << m_N_MCMC_BurnIn;
-    m_Log << " trials to be discarded..." << m_End;
+    m_Log << " trials to be discarded..." << m_RF_End;
 
     int N    = GetNChildren();
     int Nres = m_Resonances.GetN();
@@ -246,7 +246,7 @@ namespace RestFrames {
     if(Msum >= M){
       m_Log << LogWarning;
       m_Log << "Sum of child masses is in excess of parent mass: ";
-      m_Log << M << " < " << Msum << m_End;
+      m_Log << M << " < " << Msum << m_RF_End;
       return SetSpirit(false);
     }
 
@@ -262,12 +262,12 @@ namespace RestFrames {
       if(!MCMC_Generate()){
 	m_Log << LogWarning;
 	m_Log << "Problem with Markov-chain MC generation";
-	m_Log << m_End;
+	m_Log << m_RF_End;
 	m_Burnt = false;
 	return false;
       }
     }
-    m_Log << LogVerbose << "...Done" << m_End;
+    m_Log << LogVerbose << "...Done" << m_RF_End;
 
     m_Burnt = true;
     return true;
@@ -322,7 +322,7 @@ namespace RestFrames {
     if(!IsSoundBody()){ 
       m_Log << LogWarning;
       m_Log << "Unable to generate event for frame";
-      m_Log << m_End;
+      m_Log << m_RF_End;
       return SetSpirit(false);
     }
 
@@ -332,7 +332,7 @@ namespace RestFrames {
 	  return SetSpirit(false);
       if(!MCMC_Generate()){
 	m_Log << "Problem with Markov-chain MC generation";
-	m_Log << m_End;
+	m_Log << m_RF_End;
 	return SetSpirit(false);
       }
     }
@@ -352,7 +352,7 @@ namespace RestFrames {
       m_Log << LogWarning;
       m_Log << "Problem in event generation: frame mass is less ";
       m_Log << "than or equal to the sum of child masses: ";
-      m_Log << Mass << " <= " << ChildMassTOT << m_End;
+      m_Log << Mass << " <= " << ChildMassTOT << m_RF_End;
       SetSpirit(false);
       return false;
     }

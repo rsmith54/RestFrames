@@ -124,7 +124,7 @@ namespace RestFrames {
     if(!GenerateFrame()){
       m_Log << LogWarning;
       m_Log << "Unable to generate event for this frame.";
-      m_Log << m_End;
+      m_Log << m_RF_End;
       return SetSpirit(false);
     }
 

@@ -71,7 +71,7 @@ namespace RestFrames {
     if(val < 0.){
       m_Log << LogWarning;
       m_Log << "Unable to set mass to negative value ";
-      m_Log << val << ". Setting to zero." << m_End;
+      m_Log << val << ". Setting to zero." << m_RF_End;
       m_PoleMass = 0.;
     } else {
       m_PoleMass = val;
@@ -82,7 +82,7 @@ namespace RestFrames {
     if(val < 0.){
       m_Log << LogWarning;
       m_Log << "Unable to set mass to negative value ";
-      m_Log << val << ". Setting to zero." << m_End;
+      m_Log << val << ". Setting to zero." << m_RF_End;
       m_Mass = 0.;
     } else {
       m_Mass = val;
@@ -94,7 +94,7 @@ namespace RestFrames {
     if(val < 0.){
       m_Log << LogWarning;
       m_Log << "Unable to set width to negative value ";
-      m_Log << val << ". Setting to zero." << m_End;
+      m_Log << val << ". Setting to zero." << m_RF_End;
       m_Width = 0.;
     } else 
       m_Width = val;
